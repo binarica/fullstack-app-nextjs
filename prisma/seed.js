@@ -1,71 +1,63 @@
-const { PrismaClient } = require('@prisma/client')
+const { PrismaClient } = require("@prisma/client");
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
-const userData = [
+const sessionsData = [
   {
-    name: 'Alice',
-    email: 'alice@prisma.io',
-    posts: {
+    date: "2022-02-22T12:00:00Z",
+    patient: "Alice Smith",
+    fee: 100,
+    payments: {
       create: [
         {
-          title: 'Join the Prisma Slack',
-          content: 'https://slack.prisma.io',
-          published: true,
+          amount: 100,
+          createdAt: "2022-02-22T12:45:00Z",
         },
       ],
     },
   },
   {
-    name: 'Nilu',
-    email: 'nilu@prisma.io',
-    posts: {
+    date: "2022-02-24T17:00:00Z",
+    patient: "Bob Jones",
+    fee: 150,
+    payments: {
       create: [
         {
-          title: 'Follow Prisma on Twitter',
-          content: 'https://www.twitter.com/prisma',
-          published: true,
-          viewCount: 42,
+          amount: 100,
+          createdAt: "2022-02-24T17:45:00Z",
+        },
+        {
+          amount: 50,
+          createdAt: "2022-02-26T08:00:00Z",
         },
       ],
     },
   },
   {
-    name: 'Mahmoud',
-    email: 'mahmoud@prisma.io',
-    posts: {
-      create: [
-        {
-          title: 'Ask a question about Prisma on GitHub',
-          content: 'https://www.github.com/prisma/prisma/discussions',
-          published: true,
-          viewCount: 128,
-        },
-        {
-          title: 'Prisma on YouTube',
-          content: 'https://pris.ly/youtube',
-        },
-      ],
-    },
+    date: "2022-02-26T16:00:00Z",
+    patient: "Charlie Brown",
+    fee: 200,
   },
-]
+];
 
-async function main() {
-  console.log(`Start seeding ...`)
-  for (const u of userData) {
-    const user = await prisma.user.create({
-      data: u,
-    })
-    console.log(`Created user with id: ${user.id}`)
+const run = async () => {
+  console.log(`Start seeding ...`);
+
+  for (const s of sessionsData) {
+    const session = await prisma.session.create({
+      data: s,
+    });
+    console.log(`Created session with id: ${session.id}`);
   }
-  console.log(`Seeding finished.`)
-}
 
-main()
+  console.log(`Seeding finished.`);
+};
+
+run()
   .catch((e) => {
-    console.error(e)
-    process.exit(1)
+    console.error(e);
+    process.exit(1);
   })
   .finally(async () => {
-    await prisma.$disconnect()
-  })
+    await prisma.$disconnect();
+  });
