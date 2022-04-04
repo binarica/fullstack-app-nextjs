@@ -1,5 +1,5 @@
 import {
-  Button,
+  IconButton,
   Paper,
   Table,
   TableBody,
@@ -8,10 +8,11 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+import AddCardIcon from "@mui/icons-material/AddCard";
 
 const SessionsList = ({ sessions }) => (
   <TableContainer component={Paper}>
-    <Table sx={{ minWidth: 650 }}>
+    <Table>
       <TableHead>
         <TableRow>
           <TableCell>Date</TableCell>
@@ -30,7 +31,9 @@ const SessionsList = ({ sessions }) => (
             <TableCell>{patient}</TableCell>
             <TableCell align="right">${fee}</TableCell>
             <TableCell align="center">
-              <Button variant="outlined">💳 +</Button>
+              <IconButton color="primary">
+                <AddCardIcon />
+              </IconButton>
             </TableCell>
           </TableRow>
         ))}

@@ -4,7 +4,9 @@ import Header from "./Header";
 const Layout = (props) => (
   <div>
     <Header />
-    <Container sx={{ pt: "5.5em" }}>{props.children}</Container>
+    <Container maxWidth="xl" sx={{ pt: "5.5em" }}>
+      {props.children}
+    </Container>
   </div>
 );
 
