@@ -9,7 +9,7 @@ const Header = () => {
           Dashboard
         </Typography>
         <Link href="/new" passHref>
-          <Button variant="contained">+ Add new session</Button>
+          <Button variant="contained">📅 + Add new session</Button>
         </Link>
       </Toolbar>
     </AppBar>

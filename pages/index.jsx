@@ -1,43 +1,22 @@
-import Layout from '../components/Layout'
-import Post from '../components/Post'
+import { Typography } from "@mui/material";
+import Layout from "../components/Layout";
+import SessionsList from "../components/SessionsList";
 
-const Blog = props => {
+const IndexPage = (props) => {
   return (
     <Layout>
-      <div className="page">
-        <h1>My Blog</h1>
-        <main>
-          {props.feed.map(post => (
-            <div key={post.id} className="post">
-              <Post post={post} />
-            </div>
-          ))}
-        </main>
-      </div>
-      <style jsx>{`
-        .post {
-          background: white;
-          transition: box-shadow 0.1s ease-in;
-        }
-
-        .post:hover {
-          box-shadow: 1px 1px 3px #aaa;
-        }
-
-        .post + .post {
-          margin-top: 2rem;
-        }
-      `}</style>
+      <Typography variant="h4" mb={2}>My Sessions</Typography>
+      <SessionsList sessions={props.sessions} />
     </Layout>
-  )
-}
+  );
+};
 
 export const getServerSideProps = async () => {
-  const res = await fetch('http://localhost:3000/api/feed')
-  const feed = await res.json()
+  const res = await fetch("http://localhost:3000/api/sessions");
+  const sessions = await res.json();
   return {
-    props: { feed },
-  }
-}
+    props: { sessions },
+  };
+};
 
-export default Blog
+export default IndexPage;
