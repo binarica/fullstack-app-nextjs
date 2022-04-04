@@ -12,9 +12,9 @@ export default async function handle(req, res) {
 
   const { date, patient, fee } = req.body;
 
-  if (fee <= 0) {
+  if (fee < 0) {
     res.status(400).json({
-      error: "Fee must be greater than 0",
+      error: "Fee must be equal or greater than 0",
     });
     return;
   }
