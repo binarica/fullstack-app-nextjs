@@ -1,6 +1,7 @@
-# Fullstack Example with Next.js (REST API)
+# Fullstack Project with Next.js (REST API)
 
 This is a fullstack application that allows therapists to keep a list of patients' sessions, fees and payments.
+
 Built with [Next.js](https://nextjs.org/) using [React](https://reactjs.org/) (frontend), [Express](https://expressjs.com/) and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) (backend). It uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
 
 ## Getting started
@@ -25,7 +26,7 @@ The app is now running, navigate to [`http://localhost:3000/`](http://localhost:
 
 <br />
 
-**Dashboard** (located in [`./pages/index.tsx`](./pages/index.tsx)
+**Dashboard** (located in [`./pages/index.tsx`](./pages/index.tsx))
 
 **New Session** (located in [`./pages/new.tsx`](./pages/new.tsx))
 
@@ -53,6 +54,6 @@ You can also access the REST API of the API server directly. It is running on th
 
 ## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server, MongoDB)
 
-If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block.
+If you want to try another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block.
 
-Learn more about the different connection configurations in the [docs](https://www.prisma.io/docs/reference/database-reference/connection-urls).
+Learn more about the different connection configurations in the [Prisma docs](https://www.prisma.io/docs/reference/database-reference/connection-urls).
