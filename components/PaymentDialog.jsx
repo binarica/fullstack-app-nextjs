@@ -53,6 +53,7 @@ const PaymentDialog = ({ sessionId, open, onClose }) => {
           <DialogContentText>Enter payment amount</DialogContentText>
           <TextField
             autoFocus
+            name="amount"
             label="Amount"
             type="number"
             value={amount}

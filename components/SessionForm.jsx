@@ -61,6 +61,7 @@ const SessionForm = () => {
           <Typography variant="h5">New Session</Typography>
           <DateTimePicker
             renderInput={(props) => <TextField {...props} />}
+            name="date"
             label="Date"
             value={date}
             onChange={(newValue) => {
@@ -69,11 +70,14 @@ const SessionForm = () => {
           />
           <TextField
             required
+            name="patient"
             label="Patient's name"
             value={patient}
             onChange={(e) => setPatient(e.target.value)}
           />
           <TextField
+            required
+            name="fee"
             label="Fee"
             type="number"
             value={fee}

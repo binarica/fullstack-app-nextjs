@@ -55,6 +55,7 @@ const SessionsList = ({ sessions }) => {
                     <IconButton
                       color="primary"
                       onClick={() => handleDialogOpen(id)}
+                      data-cy="pay-button"
                     >
                       <AddCardIcon />
                     </IconButton>
