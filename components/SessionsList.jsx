@@ -28,24 +28,30 @@ const SessionsList = ({ sessions }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {sessions.map(({ id, date, patient, fee }) => (
-              <TableRow
-                key={id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell>{new Date(date).toLocaleString()}</TableCell>
-                <TableCell>{patient}</TableCell>
-                <TableCell align="right">${fee}</TableCell>
-                <TableCell align="center">
-                  <IconButton
-                    color="primary"
-                    onClick={() => setDialogOpen(true)}
-                  >
-                    <AddCardIcon />
-                  </IconButton>
-                </TableCell>
-              </TableRow>
-            ))}
+            {sessions.map(({ id, date, patient, fee }) => {
+              const formattedDate = new Date(date).toLocaleString([], {
+                dateStyle: "short",
+                timeStyle: "short",
+              });
+              return (
+                <TableRow
+                  key={id}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell>{formattedDate}</TableCell>
+                  <TableCell>{patient}</TableCell>
+                  <TableCell align="right">${fee}</TableCell>
+                  <TableCell align="center">
+                    <IconButton
+                      color="primary"
+                      onClick={() => setDialogOpen(true)}
+                    >
+                      <AddCardIcon />
+                    </IconButton>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </TableContainer>

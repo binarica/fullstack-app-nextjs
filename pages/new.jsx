@@ -18,7 +18,12 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import Layout from "../components/Layout";
 
 const NewSession = () => {
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(() => {
+    const newDate = new Date();
+    newDate.setSeconds(0, 0);
+    return newDate;
+  });
+
   const [patient, setPatient] = useState("");
   const [fee, setFee] = useState(0);
 
