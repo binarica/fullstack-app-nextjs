@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   Button,
   TextField,
@@ -10,9 +10,12 @@ import {
   InputAdornment,
   Stack,
 } from "@mui/material";
+import AlertContext from "../context/AlertContext";
 
 const PaymentDialog = ({ sessionId, open, onClose }) => {
   const [amount, setAmount] = useState("");
+
+  const toggleAlert = useContext(AlertContext);
 
   const handleClose = () => {
     setAmount("");
@@ -33,10 +36,12 @@ const PaymentDialog = ({ sessionId, open, onClose }) => {
             throw new Error(error);
           });
         }
+        setAmount("");
+        toggleAlert("success", "Payment added successfully");
         onClose();
       })
       .catch((err) => {
-        alert(err.message);
+        toggleAlert("error", err.message);
       });
   };
 
