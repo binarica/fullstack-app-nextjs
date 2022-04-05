@@ -14,6 +14,16 @@ import PaymentDialog from "./PaymentDialog";
 
 const SessionsList = ({ sessions }) => {
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [selectedSession, setSelectedSession] = useState(null);
+
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+  };
+
+  const handleDialogOpen = (sessionId) => {
+    setSelectedSession(sessionId);
+    setDialogOpen(true);
+  };
 
   return (
     <>
@@ -44,7 +54,7 @@ const SessionsList = ({ sessions }) => {
                   <TableCell align="center">
                     <IconButton
                       color="primary"
-                      onClick={() => setDialogOpen(true)}
+                      onClick={() => handleDialogOpen(id)}
                     >
                       <AddCardIcon />
                     </IconButton>
@@ -55,7 +65,11 @@ const SessionsList = ({ sessions }) => {
           </TableBody>
         </Table>
       </TableContainer>
-      <PaymentDialog open={dialogOpen} onClose={() => setDialogOpen(false)} />
+      <PaymentDialog
+        sessionId={selectedSession}
+        open={dialogOpen}
+        onClose={handleDialogClose}
+      />
     </>
   );
 };

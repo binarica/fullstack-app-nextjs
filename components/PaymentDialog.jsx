@@ -11,11 +11,37 @@ import {
   Stack,
 } from "@mui/material";
 
-const PaymentDialog = ({ open, onClose }) => {
+const PaymentDialog = ({ sessionId, open, onClose }) => {
   const [amount, setAmount] = useState("");
 
+  const handleClose = () => {
+    setAmount("");
+    onClose();
+  };
+
+  const submitData = async (e) => {
+    e.preventDefault();
+    const body = { sessionId, amount };
+    await fetch(`http://localhost:3000/api/payment`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          return res.json().then(({ error }) => {
+            throw new Error(error);
+          });
+        }
+        onClose();
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
+
   return (
-    <Dialog open={open} fullWidth={true} onClose={onClose}>
+    <Dialog open={open} fullWidth={true} onClose={handleClose}>
       <DialogTitle>Add Payment</DialogTitle>
       <DialogContent>
         <Stack spacing={2}>
@@ -36,8 +62,10 @@ const PaymentDialog = ({ open, onClose }) => {
         </Stack>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>Cancel</Button>
-        <Button onClick={onClose}>OK</Button>
+        <Button onClick={handleClose}>Cancel</Button>
+        <Button onClick={submitData} disabled={!amount}>
+          OK
+        </Button>
       </DialogActions>
     </Dialog>
   );
